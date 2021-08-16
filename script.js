@@ -34,12 +34,20 @@ let B7Validator = { // Variavel tem funções que validam o cadastro
         switch (rDetails[0]) {
           case 'required':
             if (input.value === '') {
-              return '*Campo não deve estar vazio';
+              return `*Campo não deve estar vazio`;
             }
             break;
           case 'min':
             if (input.value.length < rDetails[1]) {
-              
+              return `Campo deve conter no minimo ${rDetails[1]} carcteres`
+            }
+            break;
+          case 'email':
+            if (input.value !== '') {
+              let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              if (!regex.test(input.value.toLowerCase())){
+                return `Email inválido`;
+                }
             }
             break;
         }
